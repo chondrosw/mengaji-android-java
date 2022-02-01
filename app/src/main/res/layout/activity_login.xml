@@ -20,7 +20,7 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Let's learn tajwid for better\n read al-quran"
+        android:text="Belajar tajwid dengan bantuan \n suara dan contoh"
         android:textSize="17sp"
 
         android:layout_marginStart="25dp"

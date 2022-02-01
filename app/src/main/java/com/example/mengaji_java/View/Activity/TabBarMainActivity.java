@@ -17,7 +17,7 @@ import com.example.mengaji_java.View.Fragment.PersonFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class TabBarMainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener {
+public class TabBarMainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
 
@@ -26,15 +26,13 @@ public class TabBarMainActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_bar_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnClickListener(this);
+        DashboardFragment dashboardFragment = new DashboardFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentBTV,dashboardFragment).commit();
+
         bottomNavigationView.setOnItemSelectedListener(this);
     }
 
-    @Override
-    public void onClick(View view) {
 
-
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
