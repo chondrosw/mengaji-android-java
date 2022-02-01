@@ -1,5 +1,6 @@
 package com.example.mengaji_java.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,15 +8,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.mengaji_java.R;
+import com.example.mengaji_java.View.Activity.LoginActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PersonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PersonFragment extends Fragment {
+public class PersonFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +28,8 @@ public class PersonFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button logoutButton;
 
     public PersonFragment() {
         // Required empty public constructor
@@ -51,6 +56,7 @@ public class PersonFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -61,6 +67,17 @@ public class PersonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_person, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_person, container, false);
+        logoutButton = root.findViewById(R.id.logout);
+        logoutButton.setOnClickListener(this);
+        return root;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.logout){
+            Intent logoutProfile = new Intent(getActivity(), LoginActivity.class);
+            startActivity(logoutProfile);
+        }
     }
 }
