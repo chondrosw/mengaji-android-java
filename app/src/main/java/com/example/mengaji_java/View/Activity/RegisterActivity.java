@@ -8,6 +8,7 @@ import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mengaji_java.Model.UserLoginModel;
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText nameEditText,usernameEditText,passwordEditText,dateEditText;
     private Button registerButton;
+    private ImageView swipeLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         passwordEditText = findViewById(R.id.et_password_register);
         dateEditText = findViewById(R.id.et_date_register);
         registerButton = findViewById(R.id.btn_register);
+        swipeLeft = findViewById(R.id.swipeLeft);
 
         registerButton.setOnClickListener(this);
+        swipeLeft.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             register(nameEditText.getText().toString(),passwordEditText.getText().toString(),dateEditText.getText().toString(),usernameEditText.getText().toString());
 
 
+        }else if(view.getId() == R.id.swipeLeft){
+            Intent moveLogin = new Intent(RegisterActivity.this,LoginActivity.class);
+            startActivity(moveLogin);
         }
     }
 
@@ -64,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                Toast.makeText(RegisterActivity.this,"Login Success",Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this,"Register Success",Toast.LENGTH_LONG).show();
                 Intent moveHome = new Intent(RegisterActivity.this,TabBarMainActivity.class);
                 startActivity(moveHome);
             }
